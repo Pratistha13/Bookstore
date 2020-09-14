@@ -11,10 +11,10 @@ import com.example.Bookstore.domain.BookRepository;
 public class BookController {
 	@Autowired
 	private BookRepository repository;
-		@RequestMapping("/index")
+		@RequestMapping("/booklist")
 		public String studentList(Model model) {
 			model.addAttribute("books", repository.findAll());
-			return "index";
+			return "booklist";
 	}
 
 }
