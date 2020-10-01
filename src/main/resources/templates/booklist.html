@@ -29,7 +29,7 @@
 		    <th>Year</th>
 		    <th>Category</th>
 		    <th>Modify</th>
-		    <th sec:authorize="hasRole('ADMIN')"> </th>	    
+		    <th sec:authorize="hasAuthority('ADMIN')"> </th>	    
 		    
 		</tr>  
     	<tr th:each = "books : ${books}">
@@ -39,7 +39,7 @@
     		<td th:text="${books.year}"></td> 
     		<td th:text="${books.category.name}"></td>   		
     		<td><a th:href="@{/modify/{id}(id=${books.id})}" class ="btn btn-primary">Modify</a></td>
-    				<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/delete/{id}(id=${books.id})}" class="btn btn-xs btn-danger">Delete</a></td>     
+    				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${books.id})}" class="btn btn-xs btn-danger">Delete</a></td>     
     	</tr>
      </table> 	
      <a href="/add" class ="btn btn-success" >Add Book</a>
