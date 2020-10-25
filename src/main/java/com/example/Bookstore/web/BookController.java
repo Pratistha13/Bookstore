@@ -44,26 +44,29 @@ public class BookController {
     	return repository.findById(id);
     }       
 
- 
+ // Add new book
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/add")
     public String addBook(Model model){
     	model.addAttribute("books", new Book());
     	model.addAttribute("categories", crepository.findAll());
         return "addbook";
     } 
-   
+ // Save new book
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Book book){
         repository.save(book);
         return "redirect:booklist";
     }
-   
+    
+// Delete book   
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     @PreAuthorize("hasRole('ADMIN')")
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
     	repository.deleteById(bookId);
         return "redirect:../booklist";
-    }    
+    }
+ //Modify book
     @RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)
     public String modifyBook(@PathVariable("id") Long bookId, Model model) {
     	model.addAttribute("books", repository.findById(bookId));

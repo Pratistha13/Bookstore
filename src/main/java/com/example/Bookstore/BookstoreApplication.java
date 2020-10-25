@@ -40,7 +40,7 @@ public class BookstoreApplication {
 			urepository.save(user1);
 			urepository.save(user2);
 			
-			log.info("fetch all students");
+			log.info("fetch all books");
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
 			}
